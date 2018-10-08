@@ -10,3 +10,6 @@
   2、利用http模块请求某电商数据返回给前端
   
   3、整体使用flex布局
+  
+  ![首页](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo2.jpg)
+  ![首页](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo1.jpg)
