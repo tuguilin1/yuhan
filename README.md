@@ -1,20 +1,12 @@
 
-> A Vue.js project
+# 一个基于vue全家桶的小型电商项目
 
-## Build Setup
+## 技术栈 vue+vuex+element-ui+express+node.js
 
-``` bash
-# install dependencies
-npm install
+- 2018/10/8
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+  1、实现首页
+  
+  2、利用http模块请求某电商数据返回给前端
+  
+  3、整体使用flex布局
