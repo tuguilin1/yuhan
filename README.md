@@ -11,5 +11,5 @@
   
   3、整体使用flex布局
   
-  (https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo2.jpg,"首页")
-  (https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo1.jpg,"首页")
+  ![首页](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo2.jpg,"首页")
+  ![首页](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo1.jpg,"首页")
