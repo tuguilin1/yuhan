@@ -5,13 +5,17 @@
 				{{item.name}}
 			</div>
 		</nav>
-		<div class="load">
+		<div class="load-more">
 			<mt-loadmore :bottom-method = "loadMore">
 				<div class="goods-list">
 					<Goods v-for = "items in dataList" :key = "items.goods_id" :goods="items"></Goods>
 				</div>
-			</mt-loadmore>	
+				<div slot="bottom" class="mint-loadmore-top">
+			      <span v-show="bottomStatus === 'loading'">Loading...</span>
+			    </div>
+			</mt-loadmore>
 		</div>
+	
 
 	</div>
 
@@ -20,9 +24,11 @@
 <script type="text/javascript">
 	import Goods from "@/components/goods"
 	import {getData} from "@/util/ajax"
+	import mtLoadmore from "@/components/loadmore"
 	export default{
 		components:{
-			Goods
+			Goods,
+			mtLoadmore
 		},
 		props:{
 			navs:{
@@ -34,21 +40,27 @@
 			return {
 				num:0,
 				index:1,
-				dataList:[]
+				dataList:[],
+				bottomStatus:"loading"
 			}
 		},
 		methods:{
 			change(index){
-				this.num = index;
-				this.index = 1;
-				this._getData()
+				if(this.num !== index){
+					this.num = index;
+					this.index = 1;
+					this.dataList = [];
+					this._getData();
+					this.bottomStatus = "loading"
+				}
+				
 			},
 			async _getData(){
 				let url = this.navs[this.num].url+`&page=${this.index++}`
 				let data = await getData(url);
 				if(data.status){
 					this.dataList =this.dataList.concat(JSON.parse(data.data.data))
-					console.log(this.dataList)
+					this.bottomStatus = ""
 				}else{
 					console.log("获取数据失败")
 				}		
@@ -76,11 +88,14 @@
 		}
 	}
 	.goods-list{
+		height: auto;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
-	.load{
-		overflow: scroll;
+	.mint-loadmore-top{
+		width: 100%;
+		height:2rem;
+		text-align: center;
 	}
 </style>
