@@ -4,6 +4,9 @@
 ## 技术栈 vue+vuex+element-ui+express+node.js
 
 - 2018/10/8
+
   1、实现首页
+  
   2、利用http模块请求某电商数据返回给前端
+  
   3、整体使用flex布局
