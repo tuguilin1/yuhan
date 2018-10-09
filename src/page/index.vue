@@ -7,7 +7,7 @@
 		<section class="banner">
 			<mt-swipe :auto="4000">
 			  <mt-swipe-item v-for = "item in bannerList" :key = 'item.id'>
-			  	<img :src="item.pic">
+			  	<img :src="item.pic" @click="jump(item.jump_url)">
 			  </mt-swipe-item>
 			</mt-swipe>
 		</section>
@@ -53,6 +53,11 @@
 				if(data.data.status){
 					this.bannerList = JSON.parse(data.data.banner)
 				}
+			},
+			jump(url){
+				let [x,y,z] = [url.lastIndexOf("/"),url.lastIndexOf("?"),url.lastIndexOf("=")];
+				let [brandId,shopId] = [url.slice(x+1,y),url.slice(z+1)];
+				console.log(typeof brandId,typeof shopId)
 			}
 		},
 		mounted(){
