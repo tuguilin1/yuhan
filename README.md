@@ -26,4 +26,6 @@
   
 -  2018/10/10
 
-   1
+   1、实现专区商品页面
+   
+   ![商品专区页](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo4.jpg)
