@@ -133,6 +133,9 @@
             this.bottomText = this.bottomLoadingText;
             break;
         }
+      },
+      translate(val) {
+        this.$emit("translate-change",val)
       }
     },
 
@@ -192,7 +195,6 @@
         this.bottomStatus = 'pull';
         this.topText = this.topPullText;
         this.scrollEventTarget = this.getScrollEventTarget(this.$el);
-        console.log(this.scrollEventTarget)
         if (typeof this.bottomMethod === 'function') {
           this.fillContainer();
           this.bindTouchEvents();

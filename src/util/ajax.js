@@ -22,4 +22,15 @@ export const getData = (url)=>{
 	})
 }
 
+export const getBrandData = (url) =>{
+	const dataUrl = "http://localhost:3000/brandData";
+	return new Promise((res,rej)=>{
+		axios.get(dataUrl,{params:{url}}).then((data)=>{
+			res(data)
+		}).catch((err)=>{
+			rej(err)
+		})
+	})
+}
+
 

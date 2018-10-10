@@ -1,18 +1,15 @@
 <template>
 	<div class="nav" ref="nav">
-		<nav ref = "header" :class="isFixed?'is-fixed':''">
+		<nav ref = "header" :class="isFixed?'is-fixed':''" class="nav-nav">
 			<div v-for = "(item,index) in navs" :key="index" :class="num === index?'active':''" @click="change(index)">
 				{{item.name}}
 			</div>
 		</nav>
 		<div class="load-more">
-			<mt-loadmore :bottom-method = "loadMore">
+			<mt-loadmore :bottom-method = "loadMore" :translate-change="changeHeader">
 				<div class="goods-list">
-					<Goods v-for = "(items,index) in dataList" :key = "items.goods_id" :goods="items"></Goods>
+					<Goods v-for = "(items,index) in dataList" :key = "items.goods_id" :goods="items" @click.native="jumpUrl(items.goods_jump_url)"></Goods>
 				</div>
-				<div slot="bottom" class="mint-loadmore-top">
-			      <span v-show="bottomStatus === 'loading'">Loading...</span>
-			    </div>
 			</mt-loadmore>
 		</div>
 	</div>
@@ -77,7 +74,6 @@
 			},
 			loadMore(){
 				this._getData();
-				this.$refs.header.style["margin-bottom"] = "2.2rem"
 			},
 			handleScroll(){
 				let scrollTop = document.documentElement.scrollTop;
@@ -90,6 +86,21 @@
 			init(){
 				window.addEventListener("scroll",this.handleScroll);
 				this.headerTop = this.$refs.header.offsetTop;
+			},
+			changeHeader(val){
+				if(val == "0"){
+					this.$refs.header.style["margin-bottom"] = "0"
+				}else{
+					this.$refs.header.style["margin-bottom"] = "2.2rem"
+				}
+			},
+			jumpUrl(url){
+				if(this.navs[this.num].name === "精选专场"){
+					let [x,y,z] = [url.lastIndexOf("/"),url.lastIndexOf("?"),url.lastIndexOf("=")];
+					let [brandId,shopId] = [url.slice(x+1,y),url.slice(z+1)];
+					this.$router.push({"name":"brand",query:{brandId,shopId}})
+				}
+				
 			}
 		},
 		mounted(){
@@ -104,7 +115,7 @@
 </script>
 
 <style type="text/css" lang="less">
-	nav{
+	.nav-nav{
 		display: flex;
 		justify-content: space-around;
 		height: 2rem;
