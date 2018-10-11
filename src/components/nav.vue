@@ -62,7 +62,6 @@
 			},
 			async _getData(){
 				let url = this.navs[this.num].url+`&page=${this.navs[this.num].index++}`
-				console.log(this.navs[this.num].index)
 				let data = await getData(url);
 				if(data.status){
 					this.dataList =this.dataList.concat(JSON.parse(data.data.data));
@@ -76,7 +75,7 @@
 				this._getData();
 			},
 			handleScroll(){
-				let scrollTop = document.documentElement.scrollTop;
+				let scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
 				if(this.headerTop <= scrollTop){
 					this.isFixed = true;	
 				}else{

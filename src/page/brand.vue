@@ -21,13 +21,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- <Nav :navs="navs"></Nav> -->
+		<Nav :navs="navs" v-if="isNavShow"></Nav>
 		<brand-goods :data="data" v-if="isBrandShow"></brand-goods>
 	</div>
 </template>
 
 <script type="text/javascript">
 	import Nav from "@/components/nav"
+	import { Indicator } from 'mint-ui';
 	import brandGoods from "@/components/brandgoods"
 	import {getBrandData} from "@/util/ajax"
 	export default{
@@ -37,24 +38,7 @@
 		},
 		data(){
 			return {
-				navs:[
-					{
-						"name":"推荐",
-						"url":"https://webservice.juanpi.com/api/getBrandGoods?brand_id=1281572_5353150&msort=1&goods_utype=C4&price_range=&cat_threeids="
-					},
-					{
-						"name":"价格",
-						"url":"https://webservice.juanpi.com/api/getBrandGoods?brand_id=1281572_5353150&msort=8&goods_utype=C4&price_range=&cat_threeids="
-					},
-					{
-						"name":"销量",
-						"url":"https://webservice.juanpi.com/api/getBrandGoods?brand_id=1281572_5353150&msort=2&goods_utype=C4&price_range=&cat_threeids="
-					},
-					{
-						"name":"筛选",
-						"url":"https://webservice.juanpi.com/api/getBrandGoods?brand_id=1281572_5353150&msort=12&goods_utype=C4&price_range=&cat_threeids="
-					}
-				],
+				'navs':[],
 				"brandInfo":{},
 				"data":[],
 				"isNavShow":false,
@@ -69,13 +53,26 @@
 				this.data = JSON.parse(data.data.data)
 				this.brandInfo = this.data.brandInfo;
 				if(typeof this.data.floor_data == "undefined"){
+					let arr1 = ["推荐","价格","销量","筛选"],arr2=[1,8,2,12],navs=[];
+					arr1.forEach((item,index)=>{
+						navs.push({
+							"name":item,
+							"url":`https://webservice.juanpi.com/api/getBrandGoods?brand_id=${brandId}_${shopId}&msort=${arr2[index]}&goods_utype=C4&price_range=&cat_threeids=`
+						})
+					})
+					this.navs=navs;
 					this.isNavShow = true
 				}else{
 					this.isBrandShow = true
 				}
+				Indicator.close()
 			}
 		},
 		mounted(){
+			Indicator.open({
+			  text: '加载中...',
+			  spinnerType: 'fading-circle'
+			});
 			this.init()
 		}
 	}

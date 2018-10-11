@@ -178,7 +178,7 @@
 
       getScrollTop(element) {
         if (element === window) {
-          return Math.max(window.pageYOffset || 0, document.documentElement.scrollTop);
+          return Math.max(window.pageYOffset || 0, document.documentElement.scrollTop||document.body.scrollTop);
         } else {
           return element.scrollTop;
         }
@@ -224,7 +224,8 @@
 
       checkBottomReached() {
         if (this.scrollEventTarget === window) {
-          return document.documentElement.scrollTop + document.documentElement.clientHeight >= document.body.scrollHeight;
+          let top =  document.documentElement.scrollTop||document.body.scrollTop
+          return top + document.documentElement.clientHeight >= document.body.scrollHeight;
         } else {
           return this.$el.getBoundingClientRect().bottom <= this.scrollEventTarget.getBoundingClientRect().bottom + 1;
         }
