@@ -29,3 +29,11 @@
    1、实现专区商品页面
    
    ![商品专区页](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo4.jpg)
+   
+-  2018/10/12
+
+    1、完善商品专区页面,根据不同的数据匹配不同的布局。
+    
+    2、完成活动页面导航，滑动结束时确定div中心位置
+    
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo5.png)
