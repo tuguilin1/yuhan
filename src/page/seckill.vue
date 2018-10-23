@@ -9,53 +9,36 @@
 				<div class="seckill-first-nav">
 					精选好货,廉价狂翻
 				</div>
-				<div class="seckill-nav" ref="seckillNav1">
+				<div class="seckill-nav" v-for="(item,index) in data" :key = "index" :class = "activeNum == index?'active':''">
 					<p>10:00</p>
-					<p>即将开抢</p>
-				</div>
-				<div class="seckill-nav">
-					<p>10:00</p>
-					<p>即将开抢</p>
-				</div>
-				<div class="seckill-nav">
-					<p>10:00</p>
-					<p>即将开抢</p>
-				</div>
-				<div class="seckill-nav">
-					<p>10:00</p>
-					<p>即将开抢</p>
-				</div>
-				<div class="seckill-nav">
-					<p>10:00</p>
-					<p>即将开抢</p>
-				</div>
-				<div class="seckill-nav">
-					<p>10:00</p>
-					<p>即将开抢</p>
-				</div>
-				<div class="seckill-nav">
-					<p>10:00</p>
-					<p>即将开抢</p>
+					<p>{{item.tab_txt}}</p>
 				</div>
 				<div class="seckill-first-nav">
 					精选好货,廉价狂翻
 				</div>
 			</header>
 		</div>
-
+		<seckill-goods :goods-list="goodsList"></seckill-goods>
 	</div>
 </template>
 
 <script type="text/javascript">
 	import {getMin} from "@/util/tool"
+	import {getSeckillData} from "@/util/ajax"
+	import seckillGoods from "@/components/seckillgoods"
 	export default{
+		components:{
+			seckillGoods
+		},
 			data(){
 				return{
 					left:0,
 					navLeft:[],
 					activeNum:0,
 					translateNum:0,
-					scrollTimer:''
+					scrollTimer:'',
+					data:[],
+					goodsList:[]
 				}
 			},
 			computed:{
@@ -73,24 +56,39 @@
 					let obj = getMin(nodeClientLefts);
 					this.activeNum = obj.num;
 					this.$refs.navHeader.scrollLeft = obj.left + navLeft;
+					this.goodsList = this.data[obj.num].goodslist
 				},
 				handleScroll(){
 					clearTimeout(this.scrollTimer);
 					this.scrollTimer = setTimeout(this.handleTouchEnd,400)
 				},
-				init(){
+				async init(){
+						
 					this.left = this.$refs.hightLight.offsetLeft;
-					let children = this.$refs.navHeader.children;
-					let len = children.length-1;
-					for(let i = 1; i <len;i++){
-						this.navLeft.push(children[i].offsetLeft);
-					}
 					this.$refs.navHeader.addEventListener("touchend",this.handleTouchEnd);
 					this.$refs.navHeader.addEventListener("scroll",this.handleScroll)
+					let seckillData = await getSeckillData();
+					console.log(seckillData);
+					this.data = seckillData.data.data;
+					this.goodsList = this.data[0].goodslist
 				}
 			},
 			mounted(){
 				this.init()
+			},
+			watch:{
+				data:function(){
+					this.$nextTick(()=>{
+						let children = this.$refs.navHeader.children;
+						let len = children.length-1;
+						console.log(len)
+						for(let i = 1; i <len;i++){
+							this.navLeft.push(children[i].offsetLeft);
+						}
+					})
+
+				}
+
 			},
 			destoryed(){
 				this.$refs.navHeader.removeEventListener("touchend",this.handleTouchEnd);
@@ -136,6 +134,9 @@
 				line-height: 1.7rem;
 				text-align: center;
 				z-index: 10;
+			}
+			.active{
+				color:white;
 			}
 		}
 	}

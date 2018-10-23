@@ -1,6 +1,6 @@
 <template>
 	<div class="activity">
-		<div class="left-nav">
+		<div class="left-nav" @click="$router.push('/seckill')">
 			<img src="https://s2.juancdn.com/jas/180925/d/a/5ba98cb9b6f8ea080546c1d3_540x656.gif" alt="">
 		</div>
 		<div class="right-nav">

@@ -33,4 +33,15 @@ export const getBrandData = (url) =>{
 	})
 }
 
+export const getSeckillData = ()=>{
+	const dataUrl = "http://localhost:3000/seckillData";
+	return new Promise((res,rej)=>{
+		axios.get(dataUrl).then((data)=>{
+			res(data)
+		}).catch((err)=>{
+			rej(err)
+		})
+	})
+}
+
 

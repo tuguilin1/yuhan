@@ -41,15 +41,16 @@
 			}
 		},
 		methods:{
-			change(index){
+			async change(index){
 				if(this.num !== index){
+
 					this.bottomStatus = "loading";
 					this.num = index;
 					
 					this.dataList = [];
 					let data = sessionStorage.getItem(this.navs[index].name);
 					if(!data){
-						this._getData();
+						await this._getData();
 					}else{
 						this.dataList = JSON.parse(data)
 					}
@@ -57,6 +58,7 @@
 					this.$nextTick(()=>{
 						this.$refs.header.scrollIntoView()
 					})
+					
 				}
 				
 			},
