@@ -1,5 +1,5 @@
 <template>
-	<div class="goods">
+	<div class="goods" @click="jumpUrl(goods)">
 		<img v-lazy="goods.pic_url" alt="">
 		<div class="goods-info">
 			<div class="goods-name">
@@ -21,6 +21,11 @@
 				default:()=>{
 					return {}
 				}
+			}
+		},
+		methods:{
+			jumpUrl(goods){
+				this.$router.push({"name":'detail',params:{goods}})
 			}
 		}
 	}

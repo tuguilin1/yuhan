@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/page/index'
 import Brand from "@/page/brand"
 import Seckill from "@/page/seckill"
+import Detail from "@/page/detail"
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +22,11 @@ export default new Router({
       path:"/seckill",
       name:"seckill",
       component:Seckill
+    },
+    {
+      path:"/detail",
+      name:"detail",
+      component:Detail
     }
   ]
 })
