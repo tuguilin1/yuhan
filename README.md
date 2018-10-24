@@ -43,3 +43,9 @@
     
     
     ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo6.png)
+
+-  2018/10/24
+    1、完成商品详情页面
+    
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo7.png)
+    
