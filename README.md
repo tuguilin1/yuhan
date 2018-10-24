@@ -37,3 +37,9 @@
     2、完成活动页面导航，滑动结束时确定div中心位置
     
     ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo5.png)
+    
+-  2018/10/23
+    1、完成秒杀商品页面
+    
+    
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo6.png)
