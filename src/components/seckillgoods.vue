@@ -1,6 +1,6 @@
 <template>
 	<div class="seckill-goods-list">
-		<div class="seckill-goods" v-for="(item,index) in goodsList" :key="index">
+		<div class="seckill-goods" v-for="(item,index) in goodsList" :key="index" @click="jumpUrl(item)">
 			<div class="seckill-goods-left">
 				<img :src="item.pic_url" alt="">
 			</div>
@@ -30,6 +30,11 @@
 		props:{
 			goodsList:{
 				type:Array
+			}
+		},
+		methods:{
+			jumpUrl(goods){
+				this.$router.push({"name":'detail',params:{goods}})
 			}
 		}
 	}

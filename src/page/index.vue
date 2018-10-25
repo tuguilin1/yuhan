@@ -1,7 +1,7 @@
 <template>
 	<div class="index">
 		<header>
-			<div class="search">搜索</div>
+			<router-link tag="div" class="search" to="/search">搜索</router-link>
 			<div class="classify"></div>
 		</header>
 		<section class="banner">

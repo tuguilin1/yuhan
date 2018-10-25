@@ -40,8 +40,8 @@
 			<div class="buy-now" @click="buy">立即购买</div>
 			<div class="join-shop-car" @click="buy">加入购物车</div>
 		</footer>
-		<transition name="dialog">
-			<Dialog v-if="isDialog"></Dialog>
+		<transition name="dialog"> 
+			<Dialog v-if="isDialog" :sku-data="goodsInfo.sku" :fav-name="goodsInfo.info.fav_name" :zav-name="goodsInfo.info.zav_name" @cancel = "choose"></Dialog>
 		</transition>
 	</div>
 </template>
@@ -71,7 +71,6 @@
 			init(){
 				let {goods} = this.$route.params;
 				this.goods= goods;
-				console.log(this.goods);
 				let url = `https://webservice.juanpi.com/api/getMemberAboutInfo?goods_id=${goods.goods_id}&is_pt_goods=0`;
 				this.getData(url)
 			},
@@ -81,7 +80,6 @@
 				this.$nextTick(()=>{
 					this.isLoaded =true;
 				})
-				console.log(this.goodsInfo)
 			},
 			buy(){
 				this.isDialog = true;

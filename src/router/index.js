@@ -4,6 +4,7 @@ import Index from '@/page/index'
 import Brand from "@/page/brand"
 import Seckill from "@/page/seckill"
 import Detail from "@/page/detail"
+import Search from "@/page/search"
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +28,11 @@ export default new Router({
       path:"/detail",
       name:"detail",
       component:Detail
+    },
+    {
+      path:"/search",
+      name:"search",
+      component:Search
     }
   ]
 })

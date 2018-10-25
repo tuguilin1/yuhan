@@ -68,7 +68,6 @@
 					this.$refs.navHeader.addEventListener("touchend",this.handleTouchEnd);
 					this.$refs.navHeader.addEventListener("scroll",this.handleScroll)
 					let seckillData = await getSeckillData();
-					console.log(seckillData);
 					this.data = seckillData.data.data;
 					this.goodsList = this.data[0].goodslist
 				}
@@ -81,7 +80,6 @@
 					this.$nextTick(()=>{
 						let children = this.$refs.navHeader.children;
 						let len = children.length-1;
-						console.log(len)
 						for(let i = 1; i <len;i++){
 							this.navLeft.push(children[i].offsetLeft);
 						}

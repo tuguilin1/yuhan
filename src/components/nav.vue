@@ -8,7 +8,7 @@
 		<div class="load-more">
 			<mt-loadmore :bottom-method = "loadMore" :translate-change="changeHeader">
 				<div class="goods-list">
-					<Goods v-for = "(items,index) in dataList" :key = "items.goods_id" :goods="items" @click.native="jumpUrl(items.goods_jump_url)"></Goods>
+					<Goods v-for = "(items,index) in dataList" :key = "items.goods_id" :goods="items" @click.native="jumpUrl(items.goods_jump_url)" :name="navs[num].name"></Goods>
 				</div>
 			</mt-loadmore>
 		</div>

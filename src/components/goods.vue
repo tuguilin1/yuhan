@@ -21,10 +21,17 @@
 				default:()=>{
 					return {}
 				}
+			},
+			name:{
+				type:String,
+				default:""
 			}
 		},
 		methods:{
 			jumpUrl(goods){
+				if(this.name=="精选专场"){
+					return null
+				}
 				this.$router.push({"name":'detail',params:{goods}})
 			}
 		}
