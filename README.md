@@ -49,3 +49,14 @@
     
     ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo7.png)
     
+-  2018/10/25
+
+    1、完成选择商品参数组件
+    
+    2、完成搜索页面
+    
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo8.png)
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo9.png)
+    
+    
+    
