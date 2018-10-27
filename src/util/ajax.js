@@ -1,4 +1,5 @@
 import axios from "axios"
+import jsonp from "jsonp"
 
 export const getBanner = function(){
 	const bannerUrl = "http://localhost:3000/banner"
@@ -44,4 +45,13 @@ export const getSeckillData = ()=>{
 	})
 }
 
+export const getCateData = () =>{
+	const dataUrl = "https://m.juanpi.com/cate/catelist?pf=8&area=4&bi=222&dtype=jsonp&_=1540540349595&callback=jsonp1";
+	return new Promise((res,rej)=>{
+		jsonp(dataUrl,function(err,data){
+			res(data)
+		})
+	})
+	
+}
 

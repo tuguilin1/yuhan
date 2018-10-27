@@ -1,6 +1,6 @@
 <template>
 	<div class="goods" @click="jumpUrl(goods)">
-		<img v-lazy="goods.pic_url" alt="">
+		<img v-lazy="goods.pic_url||goods.picurl" alt="">
 		<div class="goods-info">
 			<div class="goods-name">
 				{{goods.cprice?`￥${goods.cprice}`:goods.coupon_tips}}

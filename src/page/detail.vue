@@ -2,7 +2,7 @@
 	<div class="detail">
 		<div class="shade" v-if="isShade" @click="choose"></div>
 		<div class="goods-img">
-			<img :src="goods.pic_url" alt="">
+			<img :src="goods.pic_url||goods.picurl" alt="">
 		</div>
 		<div class="goods-info">
 			<div class="goods-price">
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="goods-title">
-			{{goods.title_long}}
+			{{goods.title_long||goods.title}}
 		</div>
 
 		<div class="wrap-goods" v-if="isLoaded">
@@ -71,7 +71,7 @@
 			init(){
 				let {goods} = this.$route.params;
 				this.goods= goods;
-				let url = `https://webservice.juanpi.com/api/getMemberAboutInfo?goods_id=${goods.goods_id}&is_pt_goods=0`;
+				let url = `https://webservice.juanpi.com/api/getMemberAboutInfo?goods_id=${goods.goods_id||goods.enid}&is_pt_goods=0`;
 				this.getData(url)
 			},
 			async getData(url){

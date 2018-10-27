@@ -5,6 +5,11 @@ import Brand from "@/page/brand"
 import Seckill from "@/page/seckill"
 import Detail from "@/page/detail"
 import Search from "@/page/search"
+import Result from "@/page/result"
+import Cate from "@/page/cate"
+import sampleSale from "@/page/samplesale"
+import Chioce from "@/page/chioce"
+import Clearance from "@/page/clearance"
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +38,34 @@ export default new Router({
       path:"/search",
       name:"search",
       component:Search
+    },
+    {
+      path:"/result",
+      name:"result",
+      component:Result
+    },
+    {
+      path:"/cate",
+      name:"cate",
+      component:Cate
+    },
+    {
+      path:"/samplesale",
+      name:"samplesale",
+      component:sampleSale,
+      redirect: '/samplesale/chioce',
+      children:[
+          {
+            path:"chioce",
+            name:"chioce",
+            component:Chioce
+          },
+          {
+            path:"clearance/:name",
+            name:"clearance",
+            component:Clearance
+          }
+      ]
     }
   ]
 })

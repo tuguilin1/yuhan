@@ -2,7 +2,7 @@
 	<div class="index">
 		<header>
 			<router-link tag="div" class="search" to="/search">搜索</router-link>
-			<div class="classify"></div>
+			<div class="classify" @click="jumpCate"></div>
 		</header>
 		<section class="banner">
 			<mt-swipe :auto="4000">
@@ -58,6 +58,9 @@
 				let [x,y,z] = [url.lastIndexOf("/"),url.lastIndexOf("?"),url.lastIndexOf("=")];
 				let [brandId,shopId] = [url.slice(x+1,y),url.slice(z+1)];
 				console.log(typeof brandId,typeof shopId)
+			},
+			jumpCate(){
+				this.$router.push("/cate")
 			}
 		},
 		mounted(){

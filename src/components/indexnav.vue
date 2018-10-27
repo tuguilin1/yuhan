@@ -6,7 +6,7 @@
 		<div @click="jump(2)">
 			<img src="https://goods8.juancdn.com/jas/180530/f/e/5b0e68b4b6f8ea11b8424b37_270x241.png?imageMogr2/quality/85!/format/png">
 		</div>
-		<div>
+		<div @click="jump(3)">
 			<img src="https://goods2.juancdn.com/jas/180201/3/d/5a727415a9fcf8280d24465a_270x241.png?imageMogr2/quality/85!/format/png">
 		</div>
 		<div>
@@ -22,6 +22,9 @@
 				switch(index){
 					case 2:
 						this.$router.push("/seckill");
+						break;
+					case 3:
+						this.$router.push("/samplesale");
 						break;
 				}
 			}

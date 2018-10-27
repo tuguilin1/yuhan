@@ -4,7 +4,9 @@
 			<mt-search
 			  v-model="value"
 			  cancel-text="取消"
-			  placeholder="搜索">
+			  placeholder="搜索"
+			  @keyup.enter.native="search"
+			  >
 			</mt-search>
 		</header>
 		<div class="search-hot">
@@ -29,6 +31,9 @@
 			async init(){
 				let data = await getBrandData('https://m.juanpi.com/keywords/search?plateform=m&zy_ids=c4_l4&item=');
 				this.data = JSON.parse(data.data.data).hot_keywords;
+			},
+			search(){
+				this.$router.push({path:"/result",query:{keyword:this.value}})
 			}
 		},
 		mounted(){
