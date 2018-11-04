@@ -15,6 +15,7 @@
 		<Activity></Activity>
 		<middle-header info="精选口碑好货·买过的都说好"></middle-header>
 		<Nav :navs="navs"></Nav>
+
 	</div>
 </template>
 

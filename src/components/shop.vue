@@ -1,19 +1,19 @@
 <template>
-	<div class="shop">
-		<div class="shop-img">
+	<div class="shops">
+		<div class="shops-img" @click="jumpShop(goods)">
 			<img :src="goods.ss_cover" alt="">
 		</div>
-		<div class="shop-goods">
-			<div class="shop-goods-desc" v-for="(item,index) in goods.sub_data" :key="index" >
-				<div class="shop-goods-img">
+		<div class="shops-goods">
+			<div class="shops-goods-desc" v-for="(item,index) in goods.sub_data" :key="index" @click="jumpGoods(item)">
+				<div class="shops-goods-img">
 					<img :src="item.pic">
-					<div class="shop-goods-sales">
+					<div class="shops-goods-sales">
 						<mt-progress :value="item.progress_info.percent*100" :bar-height="5"></mt-progress>
 					</div>
 				</div>
-				<div class="shop-goods-info">
-					<p class="shop-goods-price">{{item.cp}}</p>
-					<p class="shop-goods-name">{{item.title}}</p>
+				<div class="shops-goods-info">
+					<p class="shops-goods-price">{{item.cp}}</p>
+					<p class="shops-goods-name">{{item.title}}</p>
 				</div>
 			</div>
 		</div>
@@ -26,17 +26,25 @@
 			goods:{
 				type:Object
 			}
+		},
+		methods:{
+			jumpShop(goods){
+				this.$router.push({"name":"brand",query:{brandId:goods.goods_id,shopId:goods.shop_id}})
+			},
+			jumpGoods(goods){
+				this.$router.push({"name":'detail',params:{goods}})
+			}
 		}
 	}
 </script>
 
 <style type="text/css" lang="less">
 @color:#ff464e;
-	.shop{
+	.shops{
 		width: 100%;
 		margin-top: 1rem;
 		height: 18rem;
-		.shop-img{
+		.shops-img{
 			width: 100%;
 			height: 9rem;
 			img{
@@ -44,17 +52,17 @@
 				width: 100%;
 			}
 		}
-		.shop-goods{
+		.shops-goods{
 			width: 100%;
 			display: flex;
 			margin-top: .5rem;
-			.shop-goods-desc{
+			.shops-goods-desc{
 				flex:1;
 				box-sizing: border-box;
 				padding-left: 3%;
 				padding-right: 3%;
 
-				.shop-goods-img{
+				.shops-goods-img{
 					width: 100%;
 					height: 6rem;
 					position: relative;
@@ -62,7 +70,7 @@
 						width: 100%;
 						height: 100%;
 					}
-					.shop-goods-sales{
+					.shops-goods-sales{
 						position: absolute;
 						bottom:0rem;
 						left:0;
@@ -79,14 +87,14 @@
 						}
 					}
 				}
-				.shop-goods-info{
+				.shops-goods-info{
 					text-align: center;
 					line-height: 1.2rem;
-					.shop-goods-price{
+					.shops-goods-price{
 						color:@color;
 						font-size: .8rem;
 					}
-					.shop-goods-name{
+					.shops-goods-name{
 						width: 25vw;
 						font-size: .5rem;
 						white-space: nowrap;

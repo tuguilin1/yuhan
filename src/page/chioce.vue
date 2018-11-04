@@ -21,7 +21,6 @@
 			async init(){
 				let data = await getData("http://webservice.juanpi.com/api/getBrandClearanceGoods?cid=ppqc_jingxuan&zhouyi_ids=p8_c4_l4&page=1");
 				this.goodsList = JSON.parse(data.data.data);
-				console.log(this.goodsList)
 
 			}
 		},

@@ -2,11 +2,11 @@
 	<div class="detail">
 		<div class="shade" v-if="isShade" @click="choose"></div>
 		<div class="goods-img">
-			<img :src="goods.pic_url||goods.picurl" alt="">
+			<img :src="goods.pic_url||goods.picurl||goods.pic" alt="">
 		</div>
 		<div class="goods-info">
 			<div class="goods-price">
-				￥{{goods.cprice}}
+				￥{{goods.cprice||goods.cp}}
 			</div>
 			<div class="goods-sale">
 				{{goods.zg_cat_id}}已购
@@ -35,7 +35,7 @@
 			
 		</div>
 		<footer>
-			<div class="index">首页</div>
+			<router-link to="/" tag="div" class="index">首页</router-link>
 			<div class="shop-car">购物车</div>
 			<div class="buy-now" @click="buy">立即购买</div>
 			<div class="join-shop-car" @click="buy">加入购物车</div>
@@ -69,7 +69,13 @@
 		},
 		methods:{
 			init(){
-				let {goods} = this.$route.params;
+				let goods = sessionStorage.getItem("goods");
+				if(!goods){
+					goods = this.$route.params.goods;
+					sessionStorage.setItem("goods",JSON.stringify(goods));
+				}else{
+					goods = JSON.parse(goods)
+				}
 				this.goods= goods;
 				let url = `https://webservice.juanpi.com/api/getMemberAboutInfo?goods_id=${goods.goods_id||goods.enid}&is_pt_goods=0`;
 				this.getData(url)
@@ -92,6 +98,9 @@
 		},
 		mounted(){
 			this.init()
+		},
+		destroyed(){
+			sessionStorage.removeItem("goods")
 		}
 	}
 </script>
@@ -183,6 +192,7 @@
 			}
 		}
 		footer{
+			z-index: 100;
 			display: flex;
 			position: fixed;
 			left: 0;

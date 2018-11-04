@@ -24,11 +24,15 @@
 				let url = `http://webservice.juanpi.com/api/getBrandClearanceOtherGoods?cate_key=${name}&page=1&pf=m&brandclear=brandclear_127_419_A`
 				let data = await getData(url);
 				this.goodsList = JSON.parse(data.data.data);
-				console.log(this.goodsList)
 			}
 		},
 		mounted(){
 			this.init()
+		},
+		beforeRouteUpdate(to,from,next){
+			next();
+			this.init();
+
 		}
 	}
 </script>

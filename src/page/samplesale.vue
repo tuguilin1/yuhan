@@ -11,7 +11,9 @@
 				<div v-for="(item,index) in Object.keys(objNav)" :class="index == activeNum?'active':''" @click="changeUrl(item,index)">{{item}}</div>
 			</nav>
 		</div>
-		<router-view></router-view>
+		<transition :name="slide">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
@@ -21,14 +23,15 @@
 		data(){
 			return{
 				objNav:{
-					"精选":"jingxuan",
+					"精选":"chioce",
 					"鞋包配饰":"xiezi",
 					"美妆":"meizhuang",
 					"运动":"yundong",
 					"母婴童装":"muyingtongzhuang",
 					"居家数码":"jujiashuma"
 				},
-				activeNum:0
+				activeNum:0,
+				slide:"slide-right"
 			}
 		},
 		methods:{
@@ -39,6 +42,44 @@
 				}else{
 					this.$router.push(`/samplesale/clearance/${this.objNav[name]}`)
 				}
+			},
+			compare(path1,path2){
+				let num1,num2
+				Object.keys(this.objNav).forEach((item,index)=>{
+					if(this.objNav[item] === path1){
+						num1 = index
+					}
+					if(this.objNav[item] === path2){
+						num2 = index
+					}
+				})
+				return num1 - num2
+			},
+			init(){
+				let name = this.$route.params.name;
+				if(!name){
+					this.activeNum = 0;
+				}else{
+					Object.keys(this.objNav).forEach((item,index)=>{
+						if(this.objNav[item] === name){
+							this.activeNum = index
+						}
+					})
+				}
+			}
+		},
+		mounted(){
+			this.init();
+		},
+		watch:{
+			"$route"(to,from){
+				const toDepth = to.path.split('/')
+			    const fromDepth = from.path.split('/')
+			   if(this.compare(toDepth[toDepth.length-1],fromDepth[fromDepth.length-1])>0){
+			   	this.slide = "slide-right"
+			   }else{
+			   	this.slide = "slide-left"
+			   }
 			}
 		}
 	}
@@ -73,5 +114,29 @@
 				border-bottom: 2px solid @color;
 			}
 		}
+	}
+	.slide-right-enter{
+		transform:translateX(100%);
+	}
+	.slide-right-enter-active{
+		transition: all .5s;
+	}
+	.slide-right-leave-active{
+		transition: all .5s;
+	}
+	.slide-right-leave-to{
+		transform: translateX(-100%);
+	}
+	.slide-left-enter{
+		transform:translateX(-100%);
+	}
+	.slide-left-enter-active{
+		transition: all .5s;
+	}
+	.slide-left-leave-to{
+		transform:translateX(100%);
+	}
+	.slide-left-leave-active{
+		transition: all .5s;
 	}
 </style>
