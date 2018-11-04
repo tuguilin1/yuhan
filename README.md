@@ -57,6 +57,16 @@
     
     ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo8.png)
     ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo9.png)
+  
+ -  2018/10/27
+ 
+    1、利用jsonp获取全部分类数据
     
+    2、完成搜索结果，全部分类，品牌促销页面
+    
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo10.png)
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo11.png)
+    ![](https://raw.githubusercontent.com/tuguilin1/yuhan/master/static/demo12.png)
+
     
     
