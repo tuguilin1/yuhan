@@ -2,7 +2,7 @@ import axios from "axios"
 import jsonp from "jsonp"
 
 export const getBanner = function(){
-	const bannerUrl = "http://localhost:3000/banner"
+	const bannerUrl = "http://127.0.0.1:3000/banner"
 	return new Promise((res,rej)=>{
 		axios.get(bannerUrl).then((data)=>{
 			res(data)
@@ -13,7 +13,7 @@ export const getBanner = function(){
 }
 
 export const getData = (url)=>{
-	const dataUrl = "http://localhost:3000/data";
+	const dataUrl = "http://127.0.0.1:3000/data";
 	return new Promise((res,rej)=>{
 		axios.get(dataUrl,{params:{url}}).then((data)=>{
 			res(data)
@@ -24,7 +24,7 @@ export const getData = (url)=>{
 }
 
 export const getBrandData = (url) =>{
-	const dataUrl = "http://localhost:3000/brandData";
+	const dataUrl = "http://127.0.0.1:3000/brandData";
 	return new Promise((res,rej)=>{
 		axios.get(dataUrl,{params:{url}}).then((data)=>{
 			res(data)
@@ -35,7 +35,7 @@ export const getBrandData = (url) =>{
 }
 
 export const getSeckillData = ()=>{
-	const dataUrl = "http://localhost:3000/seckillData";
+	const dataUrl = "http://127.0.0.1:3000/seckillData";
 	return new Promise((res,rej)=>{
 		axios.get(dataUrl).then((data)=>{
 			res(data)

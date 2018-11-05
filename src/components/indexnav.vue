@@ -1,6 +1,6 @@
 <template>
 	<div class="index-nav">
-		<div>
+		<div @click="jump(1)">
 			<img src="https://goods5.juancdn.com/jas/180222/8/5/5a8e9c188150a133c81553be_270x241.png?iopcmd=convert&Q=85&dst=png">
 		</div>
 		<div @click="jump(2)">
@@ -9,13 +9,14 @@
 		<div @click="jump(3)">
 			<img src="https://goods2.juancdn.com/jas/180201/3/d/5a727415a9fcf8280d24465a_270x241.png?imageMogr2/quality/85!/format/png">
 		</div>
-		<div>
+		<div @click="jump(4)">
 			<img src="https://goods4.juancdn.com/jas/180917/6/5/5b9f175033b08945a870ad21_270x241.png?imageMogr2/quality/85!/format/png">
 		</div>
 	</div>
 </template>
 
 <script type="text/javascript">
+	import { Toast } from 'mint-ui';
 	export default{
 		methods:{
 			jump(index){
@@ -25,6 +26,9 @@
 						break;
 					case 3:
 						this.$router.push("/samplesale");
+						break;
+					default:
+						Toast("还没有没写");
 						break;
 				}
 			}

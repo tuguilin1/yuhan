@@ -1,11 +1,14 @@
 <template>
   <div id="app">
+  	<div class="shade" v-if="isshade">
+  		
+  	</div>
     <router-view/>
 	<footer @click="changeActive" v-if="isBottomShow">
 		<router-link tag="div" to="/" :class="activeIndex !=='page1'?'page1':'icon-active1'">首页</router-link>
 		<router-link tag="div" to="/cate" :class="activeIndex !=='page2'?'page2':'icon-active2'">分类</router-link>
-		<router-link tag="div" to="/" :class="activeIndex !=='page3'?'page3':'icon-active3'">购物车</router-link>
-		<router-link tag="div" to="/" :class="activeIndex !=='page4'?'page4':'icon-active4'">我的卷皮</router-link>
+		<router-link tag="div" to="/car" :class="activeIndex !=='page3'?'page3':'icon-active3'">购物车</router-link>
+		<router-link tag="div" to="/my" :class="activeIndex !=='page4'?'page4':'icon-active4'">我的卷皮</router-link>
 	</footer>
   </div>
 </template>
@@ -16,7 +19,8 @@ export default {
   data(){
   	return{
   		activeIndex:"page1",
-  		isBottomShow:true
+  		isBottomShow:true,
+  		isshade:false
   	}
   },
   methods:{
@@ -44,6 +48,15 @@ export default {
 *{
   margin: 0;
   padding: 0;
+}
+.shade{
+	position: fixed;
+	left: 0;
+	right: 0;
+	top:0;
+	bottom: 0;
+	background:rgba(0,0,0,.2);
+	z-index:150;
 }
 footer{
 		width: 100%;

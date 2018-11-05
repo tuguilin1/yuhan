@@ -25,6 +25,7 @@
 	import Activity from "@/components/activity"
 	import middleHeader from "@/components/middleheader"
 	import Nav from "@/components/nav"
+	import { Toast } from 'mint-ui';
 	export default{
 		components:{
 			Banner,
@@ -58,7 +59,13 @@
 			jump(url){
 				let [x,y,z] = [url.lastIndexOf("/"),url.lastIndexOf("?"),url.lastIndexOf("=")];
 				let [brandId,shopId] = [url.slice(x+1,y),url.slice(z+1)];
-				console.log(typeof brandId,typeof shopId)
+				brandId = parseInt(brandId);
+				shopId = parseInt(shopId);
+				if(isNaN(brandId)||isNaN(shopId)){
+					Toast("活动页没写")
+				}else{
+					this.$router.push({"name":"brand",query:{brandId,shopId}})
+				}
 			},
 			jumpCate(){
 				this.$router.push("/cate")
@@ -71,6 +78,7 @@
 </script>
 
 <style type="text/css" lang="less">
+.index{
 	header{
 		width: 100%;
 		height: 4rem;
@@ -102,4 +110,6 @@
 			height: 100%;
 		}
 	}
+}
+	
 </style>

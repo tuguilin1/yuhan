@@ -10,6 +10,8 @@ import Cate from "@/page/cate"
 import sampleSale from "@/page/samplesale"
 import Chioce from "@/page/chioce"
 import Clearance from "@/page/clearance"
+import My from "@/page/my"
+import Car from "@/page/car"
 Vue.use(Router)
 
 export default new Router({
@@ -66,6 +68,16 @@ export default new Router({
             component:Clearance
           }
       ]
+    },
+    {
+      path:"/my",
+      name:"my",
+      component:My
+    },
+    {
+      path:"/car",
+      name:"car",
+      component:Car
     }
   ]
 })
